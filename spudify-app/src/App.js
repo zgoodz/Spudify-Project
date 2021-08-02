@@ -5,6 +5,7 @@ import Playlist from './Components/Playlist'
 import Search from './Components/Search'
 import Header from './Components/Header'
 import Welcome from './Components/Welcome'
+import { key } from './secrets/api'
 
 function App() {
 
@@ -13,14 +14,14 @@ function App() {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer
+        'Authorization': 'Bearer'
         // Your token here
-        '}
+        }
     })
     .then(r => r.json())
     .then(data => console.log(data))
   }, [])
-
+console.log(key)
   return (
     <div className="App">
       <Header />
