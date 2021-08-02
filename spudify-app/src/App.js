@@ -8,29 +8,93 @@ import Welcome from './Components/Welcome'
 import { key } from './secrets/api'
 
 function App() {
+  const [onSearch, setOnSearch] = useState('')
+  const [onDropDown, setOnDropDown] = useState('')
+  const [searchSongs, setSearchSongs]= useState([])
+  const [playlistSongs, setPlaylist] = useState([])
 
+  let url = ""
+
+  
   useEffect(()=> {
-    fetch('https://api.spotify.com/v1/search?q=roadtrip&type=track', {
+
+    function dataToRender(data) {
+      if(onDropDown === "Title") {
+        return data.tracks.items
+      } else if (onDropDown === "Artist") {
+        return data.artists.items
+      } else {
+        return data.albums.items
+      }
+    }
+
+    if(onDropDown === "Title") {
+      url=`https://api.spotify.com/v1/search?q=${onSearch}&type=track&market=US&limit=10`
+    } else if (onDropDown === "Artist") {
+      url=`https://api.spotify.com/v1/search?q=${onSearch}&type=artist&market=US&limit=10`
+    } else {
+      url =`https://api.spotify.com/v1/browse/new-releases?country=US`
+    }
+
+    fetch(url, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer'
+        'Authorization': `Bearer ${key}`
         // Your token here
         }
     })
     .then(r => r.json())
-    .then(data => console.log(data))
-  }, [])
-console.log(key)
+    .then(data => setSearchSongs(dataToRender(data)))
+  }, [onSearch, onDropDown])
+
+  function makePlaylist(song){
+    const playlistSong = {
+      title: song.name, 
+      artist: song.artists[0].name, 
+      spotifyId: song.id,
+      id: Math.random() }
+
+    fetch('http://localhost:8000/Playlist', {
+      method : "POST", 
+      headers: {
+        'Content-Type': 'application/json',
+      }, 
+      body: JSON.stringify(playlistSong)
+    })
+    const newPlaylist = [...playlistSongs, playlistSong]
+    setPlaylist(newPlaylist)
+  }
+
+  function removeSong(song){
+    console.log(song)
+    fetch(`http://localhost:8000/Playlist/${song.id}`, {
+      method : "DELETE"
+    })
+    const filter = playlistSongs.filter((tune)=>{
+      return tune.id !== song.id
+    })
+    setPlaylist(filter)
+  }
+
   return (
     <div className="App">
       <Header />
       <Switch>
         <Route path='/playlist'>
-          <Playlist />
+          <Playlist 
+            playlistSongs={playlistSongs} 
+            removeSong={removeSong}
+          />
         </Route>
         <Route path='/search'>
-          <Search />
+          <Search 
+            setOnSearch={setOnSearch} 
+            setOnDropDown={setOnDropDown}
+            makePlaylist={makePlaylist}
+            songs={searchSongs}
+            onDropDown={onDropDown}
+          />
         </Route>
         <Route path='/'>
           <Welcome />
