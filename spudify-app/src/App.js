@@ -1,8 +1,8 @@
-import './App.css';
+import './App.css'
 import { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Playlist from './Components/Playlist'
-import Results from './Components/Results'
+import Search from './Components/Search'
 import Header from './Components/Header'
 import Welcome from './Components/Welcome'
 
@@ -27,7 +27,7 @@ function App() {
           <Playlist />
         </Route>
         <Route path='/search'>
-          <Results />
+          <Search />
         </Route>
         <Route path='/'>
           <Welcome />
