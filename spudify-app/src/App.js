@@ -7,17 +7,31 @@ import Header from './Components/Header'
 import Welcome from './Components/Welcome'
 
 function App() {
+  const [onSearch, setOnSearch ] = useState('')
+  const [onDropDown, setOnDropDown ] = useState('')
+
+  let url=""
+  console.log(onDropDown)
 
   useEffect(()=> {
-    fetch('https://api.spotify.com/v1/search?q=roadtrip&type=track', {
+      if(onDropDown === "Title") {
+        url=`https://api.spotify.com/v1/search?q=${onSearch}&type=track&market=US&limit=10&offset=5`
+      } else if (onDropDown === "Artist") {
+        url=`https://api.spotify.com/v1/search?q=${onSearch}&type=artist&market=US&limit=10&offset=5`
+      } else {
+        url =`https://api.spotify.com/v1/browse/new-releases?country=US`
+      }
+
+    fetch(url, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer BQAH8M5nvngpAN3f4ZReVXMGi1UVcsE631_w_6N3m6eQx182Ympqi1U-GVyucjgf0f6CfXWMv2rwql99euh0oZwgCbSj-ZP7uGIzQb00Wd9p1vHiEo1R5tEtBTiiBkg0FCI6Mm3HP8A'}
+        'Authorization': 'Bearer BQBGPLj4JV4DLuzPoOVNg2mVPhIMUvxQ5_IIXneLbE_nVuYD8tED6BWVMfeH3zglJ7llk_FpsLcauD8j1FkghilR2UXsP5TZOF2o_6k4zg3K4uf9_hVTRF8B5ZDZtPPVC2rHD3zIF7ORbQ'}
     })
     .then(r => r.json())
     .then(data => console.log(data))
-  }, [])
+  }, [onSearch, onDropDown])
+
 
   return (
     <div className="App">
@@ -27,7 +41,7 @@ function App() {
           <Playlist />
         </Route>
         <Route path='/search'>
-          <Search />
+          <Search setOnSearch={setOnSearch} setOnDropDown={setOnDropDown}/>
         </Route>
         <Route path='/'>
           <Welcome />
