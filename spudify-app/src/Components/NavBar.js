@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { NavLink} from 'react-router-dom'
 
 function NavBar() {
     const [logInButton, setLogInButton] = useState(true)
@@ -9,9 +10,9 @@ function NavBar() {
 
     return (
         <nav>
-            <a className="button" href="/">Home</a>
-            <a className="button" href="/search">Search</a>
-            <a className="button" href="/playlist">Your Playlist</a>
+            <NavLink to='home'>Home</NavLink>
+            <NavLink to='search'>Search</NavLink>
+            <NavLink to='playlist'>YourPlaylist</NavLink>
             {logInButton ? (
                 <button onClick={handleButton}>Log In</button>
                 ) : (
