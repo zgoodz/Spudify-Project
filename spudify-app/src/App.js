@@ -26,7 +26,7 @@ function App() {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer BQBGPLj4JV4DLuzPoOVNg2mVPhIMUvxQ5_IIXneLbE_nVuYD8tED6BWVMfeH3zglJ7llk_FpsLcauD8j1FkghilR2UXsP5TZOF2o_6k4zg3K4uf9_hVTRF8B5ZDZtPPVC2rHD3zIF7ORbQ'}
+        'Authorization': 'Bearer '}
     })
     .then(r => r.json())
     .then(data => console.log(data))
