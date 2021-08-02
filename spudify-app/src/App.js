@@ -13,7 +13,9 @@ function App() {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer BQAH8M5nvngpAN3f4ZReVXMGi1UVcsE631_w_6N3m6eQx182Ympqi1U-GVyucjgf0f6CfXWMv2rwql99euh0oZwgCbSj-ZP7uGIzQb00Wd9p1vHiEo1R5tEtBTiiBkg0FCI6Mm3HP8A'}
+        'Authorization': 'Bearer
+        // Your token here
+        '}
     })
     .then(r => r.json())
     .then(data => console.log(data))
