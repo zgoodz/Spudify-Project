@@ -5,9 +5,11 @@ import Playlist from './Components/Playlist'
 import Search from './Components/Search'
 import Header from './Components/Header'
 import Welcome from './Components/Welcome'
+import LogIn from './Components/LogIn'
 import { key } from './secrets/api'
 
 function App() {
+  const [logInToken, setLogInToken] = useState()
   const [onSearch, setOnSearch] = useState('')
   const [onDropDown, setOnDropDown] = useState('')
   const [searchSongs, setSearchSongs]= useState([])
@@ -15,7 +17,6 @@ function App() {
 
   let url = ""
 
-  
   useEffect(()=> {
 
     function dataToRender(data) {
@@ -46,7 +47,7 @@ function App() {
     })
     .then(r => r.json())
     .then(data => setSearchSongs(dataToRender(data)))
-  }, [onSearch, onDropDown])
+  }, [onSearch])
 
   function makePlaylist(song){
     const playlistSong = {
@@ -77,6 +78,10 @@ function App() {
     setPlaylist(filter)
   }
 
+  if (!logInToken) {
+    return <LogIn setLogInToken={setLogInToken}/>
+  }
+
   return (
     <div className="App">
       <Header />
@@ -89,11 +94,14 @@ function App() {
         </Route>
         <Route path='/search'>
           <Search 
-            setOnSearch={setOnSearch} 
-            setOnDropDown={setOnDropDown}
-            makePlaylist={makePlaylist}
-            songs={searchSongs}
-            onDropDown={onDropDown}
+               setOnSearch={setOnSearch} 
+               setOnDropDown={setOnDropDown}
+               makePlaylist={makePlaylist}
+               songs={searchSongs}
+               onDropDown={onDropDown}
+               setSearchSongs ={setSearchSongs}
+               url ={url}
+               onSearch= {onSearch}
           />
         </Route>
         <Route path='/'>
