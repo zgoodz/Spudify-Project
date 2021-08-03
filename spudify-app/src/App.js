@@ -5,17 +5,18 @@ import Playlist from './Components/Playlist'
 import Search from './Components/Search'
 import Header from './Components/Header'
 import Welcome from './Components/Welcome'
-import { key } from './secrets/api'
+import TopTracks from './Components/TopTracks'
+
 
 function App() {
   const [onSearch, setOnSearch] = useState('')
   const [onDropDown, setOnDropDown] = useState('')
   const [searchSongs, setSearchSongs]= useState([])
   const [playlistSongs, setPlaylist] = useState([])
+  const [topTracksData, setTopTracksData ] = useState([])
 
   let url = ""
 
-  
   useEffect(()=> {
 
     function dataToRender(data) {
@@ -41,12 +42,11 @@ function App() {
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${key}`
-        // Your token here
         }
     })
     .then(r => r.json())
     .then(data => setSearchSongs(dataToRender(data)))
-  }, [onSearch, onDropDown])
+  }, [onSearch])
 
   function makePlaylist(song){
     const playlistSong = {
@@ -94,7 +94,14 @@ function App() {
             makePlaylist={makePlaylist}
             songs={searchSongs}
             onDropDown={onDropDown}
+            setSearchSongs ={setSearchSongs}
+            url ={url}
+            onSearch= {onSearch}
+            setTopTracksData={setTopTracksData}
           />
+        </Route>
+        <Route path='/toptracks'>
+          <TopTracks topTracksData={topTracksData} makePlaylist={makePlaylist}/>
         </Route>
         <Route path='/'>
           <Welcome />

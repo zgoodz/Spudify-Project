@@ -1,3 +1,40 @@
 {
-  "Playlist": []
+  "Playlist": [
+    {
+      "title": "Bobby Tarantino III",
+      "artist": "Logic",
+      "spotifyId": "2GlNXmYUojl1juGRExE1Sf",
+      "id": 0.7228787160272305
+    },
+    {
+      "title": "2055 (feat. Coi Leray)",
+      "artist": "Sleepy Hallow",
+      "spotifyId": "2jGGIrYGbhJPHOmBF5R90N",
+      "id": 0.7443173964317613
+    },
+    {
+      "title": "Take the Sadness Out of Saturday Night",
+      "artist": "Bleachers",
+      "spotifyId": "6SPUtbeCQiPGej0t5RBasE",
+      "id": 0.3319742257723963
+    },
+    {
+      "title": "Tears For Later",
+      "artist": "Don Diablo",
+      "spotifyId": "79k3hCGte01bmCcvPDEdwO",
+      "id": 0.5461090432886915
+    },
+    {
+      "title": "Take the Sadness Out of Saturday Night",
+      "artist": "Bleachers",
+      "spotifyId": "6SPUtbeCQiPGej0t5RBasE",
+      "id": 0.8317440803453984
+    },
+    {
+      "title": "Stand For Myself",
+      "artist": "Yola",
+      "spotifyId": "1aF9Xjtg1d1wwsE4hRAkQV",
+      "id": 0.5646261943831752
+    }
+  ]
 }

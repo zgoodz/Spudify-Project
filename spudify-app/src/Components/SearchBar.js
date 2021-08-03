@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState} from 'react'
 
 function SearchBar({ setOnSearch, setOnDropDown }) {
     const [ searchValue, setOnSearchValue ] = useState('')
