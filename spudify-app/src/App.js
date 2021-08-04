@@ -15,7 +15,7 @@ function App() {
   const [submittedData, setSubmittedData]=useState({})
  
  
-  console.log(submittedData)
+  
   function dataToRender(data) {
     
     if(submittedData.dropDown === "Title") {
@@ -29,22 +29,19 @@ function App() {
   let url = ""
   function potato(){
     if(submittedData.dropDown === "Title") {
-      console.log(submittedData)
       return url=`https://api.spotify.com/v1/search?q=${submittedData.search}&type=track&market=US&limit=10`
     } else if (submittedData.dropDown === "Artist") {
-      console.log(submittedData)
       return url=`https://api.spotify.com/v1/search?q=${submittedData.search}&type=artist&market=US&limit=10`
-    } else { console.log(submittedData)
+    } else { 
       return url =`https://api.spotify.com/v1/browse/new-releases?country=US`
     }
   }
   useEffect(()=> {
-      console.log(submittedData)
     fetch(potato(), {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': `Bearer X`
+        'Authorization': `Bearer BQAhQ7srlwH2epieOUNxaRgZE2UWPyB7jajmTEZUIk2bhMLbmsOqdvuq-CjcE7y2Q0j6u0Oes7Cd4c-6-xuHjtRt2ugaoPKYmLj2X4ONk2F1SUy73uW0imdmDimpAYN5wHc0QXLKUaL5CifrD2o`
         // Your token here
         }
     })

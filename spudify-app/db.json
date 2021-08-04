@@ -1,34 +1,10 @@
 {
   "Playlist": [
     {
-      "title": "Happier Than Ever",
-      "artist": "Billie Eilish",
-      "spotifyId": "0JGOiO34nwfUdDrD612dOp",
-      "id": 0.46983184570232384
-    },
-    {
-      "title": "Happier Than Ever",
-      "artist": "Billie Eilish",
-      "spotifyId": "0JGOiO34nwfUdDrD612dOp",
-      "id": 0.4257161862210186
-    },
-    {
-      "title": "Skate",
-      "artist": "Bruno Mars",
-      "spotifyId": "4AsebSFI8STBGRcVUJ3Tmo",
-      "id": 0.9120742650686535
-    },
-    {
-      "title": "Praise The Lord (Da Shine) (feat. Skepta)",
-      "artist": "A$AP Rocky",
-      "spotifyId": "7ycWLEP1GsNjVvcjawXz3z",
-      "id": 0.5733198287724801
-    },
-    {
-      "title": "Another One Bites The Dust - Remastered 2011",
-      "artist": "Queen",
-      "spotifyId": "57JVGBtBLCfHw2muk5416J",
-      "id": 0.028160937501830574
+      "title": "Bobby Tarantino III",
+      "artist": "Logic",
+      "spotifyId": "2GlNXmYUojl1juGRExE1Sf",
+      "id": 0.0651270928100649
     }
   ]
 }

@@ -1,11 +1,11 @@
 import Track from "./Track"
 import SearchBar from "./SearchBar"
-import { useEffect } from 'react'
 import Artist from './Artist'
 
 
 
-function Search({  setOnSearch, setOnDropDown, songs, makePlaylist, setSubmittedData, setTopTracks}) {
+function Search({  songs, makePlaylist, setSubmittedData, setTopTracks}) {
+    console.log(songs)
     
    
 
@@ -14,7 +14,7 @@ function Search({  setOnSearch, setOnDropDown, songs, makePlaylist, setSubmitted
                 {method: 'GET',
                 headers: {
                  'Content-type': 'application/json',
-                  'Authorization': `Bearer X`}})
+                  'Authorization': `Bearer BQAhQ7srlwH2epieOUNxaRgZE2UWPyB7jajmTEZUIk2bhMLbmsOqdvuq-CjcE7y2Q0j6u0Oes7Cd4c-6-xuHjtRt2ugaoPKYmLj2X4ONk2F1SUy73uW0imdmDimpAYN5wHc0QXLKUaL5CifrD2o`}})
             .then(r => r.json())
             .then(data => setTopTracks(data.tracks))
     
@@ -36,7 +36,7 @@ function Search({  setOnSearch, setOnDropDown, songs, makePlaylist, setSubmitted
     
     return (
         <>
-        <SearchBar setOnSearch={setOnSearch} setOnDropDown={setOnDropDown} setSubmittedData={setSubmittedData} />
+        <SearchBar setSubmittedData={setSubmittedData} />
         {lmao()}
         </>
     )
