@@ -1,13 +1,15 @@
 import { useState } from 'react'
 
-function SearchBar({ setOnSearch, setOnDropDown }) {
+function SearchBar({ setSearchInput }) {
     const [ searchValue, setOnSearchValue ] = useState('')
     const [ dropDown, setDropDown ] = useState('Title')
 
     function handleSubmit(e) {
         e.preventDefault();
-        setOnSearch(searchValue)
-        setOnDropDown(dropDown)
+        setSearchInput({
+            onSearch: searchValue,
+            onDropDown: dropDown
+        })
       }
 
     return (

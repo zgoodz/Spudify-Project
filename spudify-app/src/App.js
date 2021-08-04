@@ -7,47 +7,12 @@ import Header from './Components/Header'
 import Welcome from './Components/Welcome'
 import LogIn from './Components/LogIn'
 import { key } from './secrets/api'
+import TopTracks from './Components/TopTracks'
 
 function App() {
   const [logInToken, setLogInToken] = useState()
-  const [onSearch, setOnSearch] = useState('')
-  const [onDropDown, setOnDropDown] = useState('')
-  const [searchSongs, setSearchSongs]= useState([])
   const [playlistSongs, setPlaylist] = useState([])
-
-  let url = ""
-
-  useEffect(()=> {
-
-    function dataToRender(data) {
-      if(onDropDown === "Title") {
-        return data.tracks.items
-      } else if (onDropDown === "Artist") {
-        return data.artists.items
-      } else {
-        return data.albums.items
-      }
-    }
-
-    if(onDropDown === "Title") {
-      url=`https://api.spotify.com/v1/search?q=${onSearch}&type=track&market=US&limit=10`
-    } else if (onDropDown === "Artist") {
-      url=`https://api.spotify.com/v1/search?q=${onSearch}&type=artist&market=US&limit=10`
-    } else {
-      url =`https://api.spotify.com/v1/browse/new-releases?country=US`
-    }
-
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': `Bearer ${key}`
-        // Your token here
-        }
-    })
-    .then(r => r.json())
-    .then(data => setSearchSongs(dataToRender(data)))
-  }, [onSearch])
+  const [topTracks, setTopTracks] = useState([])
 
   function makePlaylist(song){
     const playlistSong = {
@@ -68,7 +33,6 @@ function App() {
   }
 
   function removeSong(song){
-    console.log(song)
     fetch(`http://localhost:8000/Playlist/${song.id}`, {
       method : "DELETE"
     })
@@ -82,6 +46,7 @@ function App() {
     return <LogIn setLogInToken={setLogInToken}/>
   }
 
+
   return (
     <div className="App">
       <Header />
@@ -94,15 +59,12 @@ function App() {
         </Route>
         <Route path='/search'>
           <Search 
-               setOnSearch={setOnSearch} 
-               setOnDropDown={setOnDropDown}
                makePlaylist={makePlaylist}
-               songs={searchSongs}
-               onDropDown={onDropDown}
-               setSearchSongs ={setSearchSongs}
-               url ={url}
-               onSearch= {onSearch}
+               setTopTracks ={setTopTracks}
           />
+        </Route>
+        <Route path = '/topTracks'>
+          <TopTracks topTracks={topTracks} makePlaylist={makePlaylist}/>
         </Route>
         <Route path='/'>
           <Welcome />

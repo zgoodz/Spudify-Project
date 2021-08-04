@@ -10,6 +10,7 @@ function Playlist({ playlistSongs, removeSong }) {
             </div>
         )
     })
+    
     return (
         <div>
             <h1>Your Playlist</h1>

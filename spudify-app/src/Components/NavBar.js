@@ -18,8 +18,6 @@ function NavBar() {
                 ) : (
                 <button onClick={handleButton}>Log Out</button>
             )}
-
-            
         </nav>
     )
 }
