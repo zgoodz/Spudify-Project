@@ -1,12 +1,11 @@
 import './App.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Playlist from './Components/Playlist'
 import Search from './Components/Search'
 import Header from './Components/Header'
 import Welcome from './Components/Welcome'
 import LogIn from './Components/LogIn'
-import { key } from './secrets/api'
 import TopTracks from './Components/TopTracks'
 
 function App() {
@@ -14,11 +13,13 @@ function App() {
   const [playlistSongs, setPlaylist] = useState([])
   const [topTracks, setTopTracks] = useState([])
 
-  function makePlaylist(song){
+  function makePlaylist(song, image){
+
     const playlistSong = {
       title: song.name, 
       artist: song.artists[0].name, 
       spotifyId: song.id,
+      image: image,
       id: Math.random() }
 
     fetch('http://localhost:8000/Playlist', {
@@ -51,20 +52,23 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <Route path='/playlist'>
+        <Route exact path='/playlist'>
           <Playlist 
             playlistSongs={playlistSongs} 
             removeSong={removeSong}
           />
         </Route>
-        <Route path='/search'>
+        <Route exact path='/search'>
           <Search 
-               makePlaylist={makePlaylist}
-               setTopTracks ={setTopTracks}
+            makePlaylist={makePlaylist}
+            setTopTracks ={setTopTracks}
           />
         </Route>
-        <Route path = '/topTracks'>
-          <TopTracks topTracks={topTracks} makePlaylist={makePlaylist}/>
+        <Route exact path = '/topTracks'>
+          <TopTracks 
+            topTracks={topTracks} 
+            makePlaylist={makePlaylist}
+          />
         </Route>
         <Route path='/'>
           <Welcome />

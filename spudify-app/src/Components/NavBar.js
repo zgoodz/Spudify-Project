@@ -1,23 +1,12 @@
-import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 function NavBar() {
-    const [logInButton, setLogInButton] = useState(true)
-
-    function handleButton() {
-        setLogInButton(!logInButton)
-    }
 
     return (
         <nav>
-            <NavLink to='home'>Home</NavLink>
-            <NavLink to='search'>Search</NavLink>
-            <NavLink to='playlist'>YourPlaylist</NavLink>
-            {logInButton ? (
-                <button onClick={handleButton}>Log In</button>
-                ) : (
-                <button onClick={handleButton}>Log Out</button>
-            )}
+            <NavLink style={{ textDecoration:'none', color: 'rgb(203, 253, 255)', fontWeight: 'bold'}} activeStyle={{color: "red"}} className='navLink' to='home'>Home</NavLink>
+            <NavLink style={{ textDecoration:'none', color: 'rgb(203, 253, 255)', fontWeight: 'bold'}} activeStyle={{color: "red"}} className='navLink' to='search'>Search</NavLink>
+            <NavLink style={{ textDecoration:'none', color: 'rgb(203, 253, 255)', fontWeight: 'bold'}} activeStyle={{color: "red"}} className='navLink' to='playlist'>YourPlaylist</NavLink>
         </nav>
     )
 }

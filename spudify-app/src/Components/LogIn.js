@@ -27,23 +27,24 @@ function LogIn({ setLogInToken }) {
     }
 
     return (
-        <div className="login-wrapper">
-            <h1>Welcome to Spudify!</h1>
-            <h2>Please Log In</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <p>Username</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)}/>
-                </label>
-                <label>
-                    <p>Password</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)}/>
-                </label>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
+            <div className="login-wrapper">
+                <h1>Welcome to Spudify!</h1>
+                <h2>Please Log In</h2>
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        <p>Username</p>
+                        <input type="text" onChange={e => setUserName(e.target.value)}/>
+                    </label>
+                    <label>
+                        <p>Password</p>
+                        <input type="password" onChange={e => setPassword(e.target.value)}/>
+                    </label>
+                    <div>
+                        <br></br>
+                        <button className="btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
     )
 }
 

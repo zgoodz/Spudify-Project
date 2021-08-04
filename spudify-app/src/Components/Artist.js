@@ -7,11 +7,16 @@ function Artist({ song, topTracks }){
     }
     console.log(song)
     return(
-        <>
-            <h3>{song.name}</h3>
-            <p>{song.genres}</p>
-            <Link to='/toptracks' onClick = {handleClick}>See Top Tracks</Link>
-        </>
+        <div className='song-card artist-ul'style={{borderStyle: 'solid'}}>
+            <ul className='song-ul'>
+                <li style={{ fontSize: '20px', color: 'black', fontWeight: 'bold', marginBottom: '70px'}} >{song.name}</li>
+                <li>
+                    <button style={{marginTop: '30px', marginBottom: '-10px'}} className='btn'>
+                        <Link className='link' to='/toptracks' onClick = {handleClick} style={{ textDecoration:'none', color:'black'}}>See Top Tracks</Link>
+                    </button>
+                </li>
+            </ul>
+        </div>
     )
 }
 export default Artist

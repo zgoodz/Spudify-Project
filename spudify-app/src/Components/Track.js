@@ -5,15 +5,20 @@ function Track({ song, makePlaylist }) {
 
     function handleButton() {
         setAddButton(!addButton);
-        makePlaylist(song)
+        makePlaylist(song, image)
     }
-    
+    const image= song.album ? song.album.images[0].url : song.images[0].url
     return (
-        <div >
-            <h3>{song.name}</h3>
-            <p>{song.artists[0].name}</p>
-            <button onClick = {()=> handleButton()}>{addButton ? "Add to Playlist" : "Added"}</button>
+       
+        <div className='song-card' style={{borderStyle: 'solid'}}>      
+            <ul className="song-ul">
+                <li style={{ color: 'black', fontStyle: 'italic'}}>{song.name}</li>
+                <li style={{ color: 'black', fontWeight: 'bold' }}>{song.artists[0].name}</li>
+                <img className='card-img' src={image}/>
+            </ul>
+            <button className="track-btn btn"  onClick = {()=> handleButton()}>{addButton ? "Add to Playlist" : "Added"}</button>
         </div>
+
     )
 }
 

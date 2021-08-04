@@ -39,7 +39,7 @@ function Search({ makePlaylist, setTopTracks}) {
             } else {
                 setSearchSongs(data.albums.items)
         }})
-        }, [url])
+        }, [url, searchInput])
 
     function topTracks(id){
         fetch(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=US`,
@@ -53,8 +53,8 @@ function Search({ makePlaylist, setTopTracks}) {
  
     function lmao() {
         if (searchSongs.length > 1 ){
-            return searchSongs[1].type  === "artist" ? searchSongs.map((song)=>{{
-                return( <Artist key={song.id} song={song} topTracks={topTracks}/>)
+            return searchSongs[1].type  === "artist" ? 
+                searchSongs.map((song)=>{{ return( <Artist key={song.id} song={song} topTracks={topTracks}/>)
             }}) : searchSongs.map((song)=> {
                 return (<Track song = {song} key ={song.id} makePlaylist={makePlaylist}/>)
             })
@@ -66,10 +66,12 @@ function Search({ makePlaylist, setTopTracks}) {
     }
 
     return(
-        <>
+        <div>
             <SearchBar setSearchInput={setSearchInput} />
-            {lmao()}
-        </>
+            <div className='song-container' >
+                {lmao()}
+            </div> 
+        </div>
     )
 }
 

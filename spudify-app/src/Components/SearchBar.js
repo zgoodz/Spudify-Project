@@ -13,17 +13,17 @@ function SearchBar({ setSearchInput }) {
       }
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="search">Search by Category</label>
-                <select name="search" onChange={(e) => setDropDown(e.target.value)}>
+        <div className ='searchBar'>
+            <form  onSubmit={handleSubmit} >
+                <label htmlFor="search">Search by Category: </label>
+                <select className = 'dropDownMenu' style={{ padding: '5px 10px 5px 10px' }}name="search" onChange={(e) => setDropDown(e.target.value)}>
                     <option value="Title">Title</option>
                     <option value ="Artist">Artist</option>
                 </select>
-                <input type="text" placeholder="Search Here" onChange={(e) => setOnSearchValue(e.target.value)}/>
-                <button type="submit">Search</button>
+                <input style={{marginLeft: '5px'}} className='searchTab' type="text" placeholder="Search Here" onChange={(e) => setOnSearchValue(e.target.value)}/>
+                <button style={{marginLeft: '5px', padding: '5px 10px 5px 10px', fontSize: '16px'}} className="btn submit-btn" type="submit">Search</button>
             </form>
-        </>
+        </div>
 
     )
 }
