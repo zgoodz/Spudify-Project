@@ -1,19 +1,45 @@
-function Results({ songs, makePlaylist }) {
+import Track from "./Track"
+import SearchBar from "./SearchBar"
+import { useEffect } from 'react'
+import Artist from './Artist'
 
-    const list = songs.map((song)=>{
-        return (
-            <div onClick = {()=> makePlaylist(song)}>
-            <h3>{song.name}</h3>
-            <p>{song.artists[0].name}</p>
-        </div>
-        )
-    })
+
+
+function Search({  setOnSearch, setOnDropDown, songs, makePlaylist, setSubmittedData, setTopTracks}) {
+    
+   
+
+    function topTracks(id){
+         fetch(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=US`,
+                {method: 'GET',
+                headers: {
+                 'Content-type': 'application/json',
+                  'Authorization': `Bearer X`}})
+            .then(r => r.json())
+            .then(data => setTopTracks(data.tracks))
+    
+        
+    }
+    function lmao(){
+    if (songs.length > 1 ){
+        return songs[1].type  === "artist" ? songs.map((song)=>{{
+            return( <Artist key={song.id} song={song} topTracks={topTracks}/>)
+        }}) : songs.map((song)=> {
+            return (<Track song = {song} key ={song.id} makePlaylist={makePlaylist}/>)
+        })
+    } else {
+        return songs.map((song)=> {
+            return (<Track song = {song} key ={song.id} makePlaylist={makePlaylist}/>)
+        })
+    }
+    }
+    
     return (
-        <div>
-            <h1>Search Results</h1>
-            {list}
-        </div>
+        <>
+        <SearchBar setOnSearch={setOnSearch} setOnDropDown={setOnDropDown} setSubmittedData={setSubmittedData} />
+        {lmao()}
+        </>
     )
 }
 
-export default Results
+export default Search

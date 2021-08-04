@@ -2,7 +2,7 @@ function Playlist({ playlistSongs, removeSong }) {
     
     const list = playlistSongs.map((song)=>{
         return(
-            <div> 
+            <div key = {song.id}> 
                 <h3>{song.title}</h3>
                 <p>{song.artist}</p>
                 <button onClick={()=>removeSong(song)}>remove ❌</button>

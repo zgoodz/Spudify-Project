@@ -5,27 +5,61 @@ import Playlist from './Components/Playlist'
 import Search from './Components/Search'
 import Header from './Components/Header'
 import Welcome from './Components/Welcome'
+import TopTracks from './Components/TopTracks'
+
 
 function App() {
-  const [searchSongs, setSearchSongs]=useState([])
-  const [playlistSongs, setPlaylist]=useState([])
+  const [searchSongs, setSearchSongs]= useState([])
+  const [playlistSongs, setPlaylist] = useState([])
+  const [topTracks, setTopTracks] = useState([])
+  const [submittedData, setSubmittedData]=useState({})
+ 
+ 
+  console.log(submittedData)
+  function dataToRender(data) {
+    
+    if(submittedData.dropDown === "Title") {
+      return setSearchSongs(data.tracks.items)
+    } else if (submittedData.dropDown === "Artist") {
+      return setSearchSongs(data.artists.items)
+    } else {
+      return setSearchSongs(data.albums.items)
+    }
+  }
+  let url = ""
+  function potato(){
+    if(submittedData.dropDown === "Title") {
+      console.log(submittedData)
+      return url=`https://api.spotify.com/v1/search?q=${submittedData.search}&type=track&market=US&limit=10`
+    } else if (submittedData.dropDown === "Artist") {
+      console.log(submittedData)
+      return url=`https://api.spotify.com/v1/search?q=${submittedData.search}&type=artist&market=US&limit=10`
+    } else { console.log(submittedData)
+      return url =`https://api.spotify.com/v1/browse/new-releases?country=US`
+    }
+  }
   useEffect(()=> {
-    fetch('https://api.spotify.com/v1/search?q=roadtrip&type=track', {
+      console.log(submittedData)
+    fetch(potato(), {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer BQD_g7bgo7Wf9XAnWDaEBn8mDYfohfSAKaIc8tAFDr28NEJhvg0ijkelc8B6tex6D4nKDHqPMwbuj0KnfFb8JhR7_3PBKOfL-oYOr9Dr56GbeR7_L2ZV-GEMGbY4PotRb-2JDGAkNmJKQ79oqAM'}
+        'Authorization': `Bearer X`
+        // Your token here
+        }
     })
     .then(r => r.json())
-    .then(data => setSearchSongs(data.tracks.items))
-  }, [])
-  
+    .then(data => dataToRender(data))
+    console.log(submittedData)
+  }, [submittedData])
+
   function makePlaylist(song){
     const playlistSong = {
       title: song.name, 
       artist: song.artists[0].name, 
       spotifyId: song.id,
       id: Math.random() }
+
     fetch('http://localhost:8000/Playlist', {
       method : "POST", 
       headers: {
@@ -35,8 +69,8 @@ function App() {
     })
     const newPlaylist = [...playlistSongs, playlistSong]
     setPlaylist(newPlaylist)
-    
   }
+
   function removeSong(song){
     console.log(song)
     fetch(`http://localhost:8000/Playlist/${song.id}`, {
@@ -47,18 +81,30 @@ function App() {
     })
     setPlaylist(filter)
   }
-  
-
 
   return (
     <div className="App">
       <Header />
       <Switch>
         <Route path='/playlist'>
-          <Playlist playlistSongs={playlistSongs} removeSong={removeSong}/>
+          <Playlist 
+            playlistSongs={playlistSongs} 
+            removeSong={removeSong}
+          />
         </Route>
         <Route path='/search'>
-          <Search songs={searchSongs} makePlaylist={makePlaylist}/>
+          <Search 
+            setSubmittedData={setSubmittedData}
+            makePlaylist={makePlaylist}
+            songs={searchSongs}
+            submittedData={submittedData}
+            setSearchSongs ={setSearchSongs}
+            setTopTracks={setTopTracks}
+          />
+        </Route>
+        <Route path = '/topTracks'>
+          <TopTracks topTracks ={topTracks}
+          makePlaylist={makePlaylist}/>
         </Route>
         <Route path='/'>
           <Welcome />
