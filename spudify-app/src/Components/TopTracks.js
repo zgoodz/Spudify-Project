@@ -1,13 +1,10 @@
-import React from "react"
 import Track from "./Track"
 
-
-function TopTracks({ topTracksData, makePlaylist }) {
-
+function TopTracks({ topTracks, makePlaylist }) {
     return (
-        <>
-        {topTracksData.map(song => <Track song={song} key={song.id} makePlaylist={makePlaylist} />)}
-        </>
+        <div className= "song-container">
+            {topTracks.map(song => <Track song={song} key={song.id} makePlaylist={makePlaylist} />)}
+        </div>
     )
 }
 

@@ -1,16 +1,6 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  color: white;
 }
 
 .App-header {
@@ -28,11 +18,141 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes example {
+  0%   {color: red;}
+  17%  {color: yellow;}
+  33%  {color: blue;}
+  50%  {color: green;}
+  67%  {color: blue;}
+  83%  {color: yellow;}
+  100% {color: red;}
+}
+
+.searchBar {
+  padding-top: 20px;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
+.btn:hover {
+  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🥔</text></svg>") 16 0,auto;
+}
+.link:hover {
+  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🥔</text></svg>") 16 0,auto;
+}
+
+.dropDownMenu {
+  font-size: 15px;
+  border-radius: 8px;
+  opacity: 0.9;
+  padding: 30px, 30px, 30px, 30px;
+}
+
+.btn{
+  background-color: white;
+  color:black;
+  border-radius: 8px;
+  padding: 5px 5px;
+  opacity: 0.9;
+}
+
+.track-btn {
+  margin-bottom: 0;
+} 
+
+.navLink {
+  padding-left: 7px;
+  padding-right: 7px;
+  font-size: 20px;
+}
+
+
+header.title {
+  font-size: 30px;
+  font-style: bold;
+}
+
+.login-wrapper{
+  text-align: center;
+  color: white;
+}
+
+.login-wrapper h1 {
+  font-size: 50px;
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count:infinite;
+}
+.login-wrapper h2{
+  font-size: 32px;
+}
+
+.login-wrapper .btn {
+  font-size: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 12px;
+
+}
+
+.welcome .gif {
+  border-radius: 30px;
+  width: 60%;
+}
+
+.song-container{
+  align-items: center;
+  padding-top: 50px;
+  padding-left:50px;
+}
+.songh1 {
+  /* margin-right: 10px; */
+}
+
+.song-card {
+  width: 200px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  float: left;
+  margin: 10px;
+  text-align: center;
+  background-image: url('https://mk0nationaltodayijln.kinstacdn.com/wp-content/uploads/2019/07/national-french-fry-day-640x514.jpg') ;
+  background-size: cover;
+}
+
+  /* background-image: url("https://www.moviemiento.org/wp-content/uploads/2020/05/01_8O2A2532.jpg"); */
+
+
+.song-card .song-ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin-bottom: 10px;
+  margin-top: -5px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.card-img{
+  width: 110px;
+  height: auto;
+}
+
+.artist-ul {
+    background-image: url("https://www.moviemiento.org/wp-content/uploads/2020/05/01_8O2A2532.jpg");
+    background-size: cover;
 }
